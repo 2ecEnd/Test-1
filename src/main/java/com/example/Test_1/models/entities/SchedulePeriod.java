@@ -1,15 +1,12 @@
 package com.example.Test_1.models.entities;
 
-import com.example.Test_1.models.enums.PriorityTypes;
+import com.example.Test_1.models.enums.SlotType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
 import java.util.UUID;
 
 @Entity
@@ -24,17 +21,22 @@ public class SchedulePeriod {
     public String id;
 
     @ManyToOne
-    @Column(name = "schedule_template_id", length = 32, nullable = false)
-    public String scheduleTemplateId;
+    @Column(name = "slot_id", length = 32, nullable = false)
+    public String slotId;
 
-    @Column(name = "begin_time", nullable = false)
-    public OffsetTime beginTime;
+    @ManyToOne
+    @Column(name = "schedule_id", length = 32, nullable = false)
+    public String scheduleId;
 
-    @Column(name = "end_time", nullable = false)
-    public OffsetTime EndTime;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "slot_type", length = 20, nullable = false)
+    public SlotType slotType = SlotType.UNDEFINED;
 
-    @Column(name = "priority", length = 20, nullable = false)
-    public PriorityTypes priority = PriorityTypes.NORMAL;
+    @Column(name = "administrator_id", length = 32, nullable = false)
+    public String administratorId;
+
+    @Column(name = "executor_id", length = 32, nullable = true)
+    public String executorId;
 
     @PrePersist
     protected void onCreate() {

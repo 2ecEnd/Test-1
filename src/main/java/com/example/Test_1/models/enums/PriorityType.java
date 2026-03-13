@@ -1,6 +1,6 @@
 package com.example.Test_1.models.enums;
 
-public enum PriorityTypes {
+public enum PriorityType {
     LOW,
     NORMAL,
     HIGH,

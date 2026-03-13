@@ -1,14 +1,12 @@
 package com.example.Test_1.models.entities;
 
-import com.example.Test_1.models.enums.PriorityTypes;
+import com.example.Test_1.models.enums.PriorityType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.util.UUID;
 
@@ -33,8 +31,9 @@ public class ScheduleSlot {
     @Column(name = "end_time", nullable = false)
     public OffsetTime EndTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "priority", length = 20, nullable = false)
-    public PriorityTypes priority = PriorityTypes.NORMAL;
+    public PriorityType priority = PriorityType.NORMAL;
 
     @PrePersist
     protected void onCreate() {
