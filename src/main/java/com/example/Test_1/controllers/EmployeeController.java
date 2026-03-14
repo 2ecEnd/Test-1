@@ -5,6 +5,7 @@ import com.example.Test_1.models.dto.Employee.EmployeeCreateRequest;
 import com.example.Test_1.models.dto.Employee.EmployeeDto;
 import com.example.Test_1.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/employee")
 @AllArgsConstructor
 public class EmployeeController {
+    @Autowired
     private EmployeeService employeeService;
 
     @PostMapping

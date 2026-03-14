@@ -5,6 +5,7 @@ import com.example.Test_1.models.dto.Schedule.ScheduleCreateRequest;
 import com.example.Test_1.models.dto.Schedule.ScheduleDto;
 import com.example.Test_1.services.interfaces.ScheduleService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 @RequestMapping("/schedule")
 @AllArgsConstructor
 public class ScheduleController {
+    @Autowired
     private ScheduleService scheduleService;
 
     @PostMapping

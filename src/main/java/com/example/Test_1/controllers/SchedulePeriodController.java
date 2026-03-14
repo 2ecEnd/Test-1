@@ -8,6 +8,7 @@ import com.example.Test_1.models.dto.SchedulePeriod.SchedulePeriodDto;
 import com.example.Test_1.models.dto.SortRequest;
 import com.example.Test_1.services.interfaces.SchedulePeriodService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.logging.Filter;
 @RequestMapping("/schedulePeriod")
 @AllArgsConstructor
 public class SchedulePeriodController {
+    @Autowired
     private SchedulePeriodService schedulePeriodService;
 
     @PostMapping
