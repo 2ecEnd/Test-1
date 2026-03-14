@@ -2,10 +2,7 @@ package com.example.Test_1.models.entities;
 
 import com.example.Test_1.models.enums.PriorityType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.OffsetTime;
 import java.util.UUID;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ScheduleSlot {
     @Id
     @Column(name = "id", length = 32, nullable = false)

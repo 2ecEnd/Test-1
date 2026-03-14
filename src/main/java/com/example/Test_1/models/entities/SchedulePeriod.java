@@ -2,10 +2,7 @@ package com.example.Test_1.models.entities;
 
 import com.example.Test_1.models.enums.SlotType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -15,6 +12,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class SchedulePeriod {
     @Id
     @Column(name = "id", length = 32, nullable = false)
