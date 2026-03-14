@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.OffsetDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,5 +34,13 @@ public class Schedule {
     @PrePersist
     protected void onCreate() {
         id = UUID.randomUUID().toString().replace("-", "");
+    }
+
+    public List<String> getTagsAsList() {
+        if (scheduleTags == null) {
+            return List.of();
+        }
+
+        return Arrays.asList(scheduleTags.split(","));
     }
 }

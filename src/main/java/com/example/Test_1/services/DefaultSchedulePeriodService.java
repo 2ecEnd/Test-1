@@ -36,6 +36,7 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Override
     public String createEntity(SchedulePeriodCreateRequest request, String currentUser) {
         var slot            = scheduleSlotRepository.findById(request.scheduleSlotId);
         var schedule        = scheduleRepository.findById(request.scheduleId);
@@ -73,6 +74,7 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
         return entity.id;
     }
 
+    @Override
     public SchedulePeriodDto getEntityById(String id) {
         var entity = schedulePeriodRepository.findById(id);
 
@@ -86,6 +88,7 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
         )).orElse(null);
     }
 
+    @Override
     public List<SchedulePeriodDto> getEntities(
             FilterRequest filter,
             SortRequest sort,

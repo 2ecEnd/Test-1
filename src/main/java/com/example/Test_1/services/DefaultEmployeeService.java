@@ -17,6 +17,7 @@ public class DefaultEmployeeService implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Override
     public String createEntity(EmployeeCreateRequest request) {
         var entity = Employee.builder()
                 .employeeName(request.employeeName)
@@ -29,6 +30,7 @@ public class DefaultEmployeeService implements EmployeeService {
         return entity.id;
     }
 
+    @Override
     public EmployeeDto getEntityById(String id) {
         var entity = employeeRepository.findById(id);
 
