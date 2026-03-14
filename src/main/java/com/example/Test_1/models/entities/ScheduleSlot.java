@@ -27,7 +27,7 @@ public class ScheduleSlot {
     public OffsetTime beginTime;
 
     @Column(name = "end_time", nullable = false)
-    public OffsetTime EndTime;
+    public OffsetTime endTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", length = 20, nullable = false)

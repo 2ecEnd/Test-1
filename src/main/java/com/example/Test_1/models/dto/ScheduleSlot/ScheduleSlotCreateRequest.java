@@ -19,7 +19,7 @@ public class ScheduleSlotCreateRequest {
     public OffsetTime beginTime;
 
     @JsonProperty("EndTime")
-    public OffsetTime EndTime;
+    public OffsetTime endTime;
 
     @JsonProperty("Priority")
     public PriorityType priority;
