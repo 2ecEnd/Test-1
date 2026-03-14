@@ -1,8 +1,9 @@
 package com.example.Test_1.controllers;
 
-import com.example.Test_1.models.dto.CreateResponse;
+import com.example.Test_1.models.dto.etc.CreateResponse;
 import com.example.Test_1.models.dto.ScheduleSlot.ScheduleSlotCreateRequest;
 import com.example.Test_1.models.dto.ScheduleSlot.ScheduleSlotDto;
+import com.example.Test_1.models.dto.etc.GetByIdRequest;
 import com.example.Test_1.services.interfaces.ScheduleSlotService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class ScheduleSlotController {
     }
 
     @GetMapping
-    public ResponseEntity<ScheduleSlotDto> getEntityById(@RequestParam String id) {
-        ScheduleSlotDto entity = scheduleSlotService.getEntityById(id);
+    public ResponseEntity<ScheduleSlotDto> getEntityById(@RequestBody GetByIdRequest request) {
+        ScheduleSlotDto entity = scheduleSlotService.getEntityById(request.id);
 
         return entity == null ?
                 ResponseEntity.badRequest().build() :

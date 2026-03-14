@@ -1,6 +1,6 @@
 package com.example.Test_1.controllers;
 
-import com.example.Test_1.models.dto.CreateResponse;
+import com.example.Test_1.models.dto.etc.CreateResponse;
 import com.example.Test_1.models.dto.Schedule.ScheduleCreateRequest;
 import com.example.Test_1.models.dto.Schedule.ScheduleDto;
 import com.example.Test_1.services.interfaces.ScheduleService;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.CacheResponse;
 import java.util.Objects;
 
 @RestController

@@ -1,8 +1,8 @@
-  spring:
+spring:
   application:
     name: Test-1
   datasource:
-    url: JDBC:postgresql://localhost:5432/test1
+    url: jdbc:postgresql://localhost:5432/test1
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -11,3 +11,33 @@
     show-sql: true
     hibernate:
       ddl-auto: update
+
+springdoc:
+  api-docs:
+      path: /api-docs
+  swagger-ui:
+      path: /swagger-ui.html
+      operations-sorter: method
+      tags-sorter: alpha
+      try-it-out-enabled: true
+
+scheduled:
+  rate:
+      cron: "* * * * * *"
+      enabled: true
+
+feign:
+  client:
+      config:
+          ef2:
+              max-attempts: 5
+              period: 200
+              retryer: feign.Retryer.Default
+
+management:
+  endpoint:
+      web:
+          exposure:
+              include: ""
+      health:
+          show-details: always

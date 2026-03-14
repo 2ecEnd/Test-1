@@ -1,4 +1,4 @@
-package com.example.Test_1.models.dto;
+package com.example.Test_1.models.dto.etc;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FilterRequest {
-    @JsonProperty("Filter")
-    public List<String> filterProperties;
+public class SortRequest {
+    @JsonProperty("Sort")
+    public List<String> sortProperties;
 }

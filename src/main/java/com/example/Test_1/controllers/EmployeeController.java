@@ -1,8 +1,9 @@
 package com.example.Test_1.controllers;
 
-import com.example.Test_1.models.dto.CreateResponse;
+import com.example.Test_1.models.dto.etc.CreateResponse;
 import com.example.Test_1.models.dto.Employee.EmployeeCreateRequest;
 import com.example.Test_1.models.dto.Employee.EmployeeDto;
+import com.example.Test_1.models.dto.etc.GetByIdRequest;
 import com.example.Test_1.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<EmployeeDto> getEntityById(@RequestParam String id) {
-        var entity = employeeService.getEntityById(id);
+    public ResponseEntity<EmployeeDto> getEntityById(@RequestBody GetByIdRequest request) {
+        var entity = employeeService.getEntityById(request.id);
 
         return entity == null ?
                 ResponseEntity.notFound().build() :

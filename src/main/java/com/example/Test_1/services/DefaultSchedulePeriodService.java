@@ -1,10 +1,10 @@
 package com.example.Test_1.services;
 
-import com.example.Test_1.models.dto.FilterRequest;
-import com.example.Test_1.models.dto.PaginationRequest;
+import com.example.Test_1.models.dto.etc.FilterRequest;
+import com.example.Test_1.models.dto.etc.PaginationRequest;
 import com.example.Test_1.models.dto.SchedulePeriod.SchedulePeriodCreateRequest;
 import com.example.Test_1.models.dto.SchedulePeriod.SchedulePeriodDto;
-import com.example.Test_1.models.dto.SortRequest;
+import com.example.Test_1.models.dto.etc.SortRequest;
 import com.example.Test_1.models.entities.Employee;
 import com.example.Test_1.models.entities.SchedulePeriod;
 import com.example.Test_1.repositories.EmployeeRepository;
