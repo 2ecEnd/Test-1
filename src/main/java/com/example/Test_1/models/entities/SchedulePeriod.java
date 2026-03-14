@@ -21,12 +21,12 @@ public class SchedulePeriod {
     public String id;
 
     @ManyToOne
-    @Column(name = "slot_id", length = 32, nullable = false)
-    public String slotId;
+    @JoinColumn(name = "schedule_slot_id", nullable = false)
+    public ScheduleSlot scheduleSlot;
 
     @ManyToOne
-    @Column(name = "schedule_id", length = 32, nullable = false)
-    public String scheduleId;
+    @JoinColumn(name = "schedule_id", nullable = false)
+    public Schedule schedule;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "slot_type", length = 20, nullable = false)

@@ -22,8 +22,8 @@ public class ScheduleSlot {
     public String id;
 
     @ManyToOne
-    @Column(name = "schedule_template_id", length = 32, nullable = false)
-    public String scheduleTemplateId;
+    @JoinColumn(name = "schedule_template_id", nullable = false)
+    public ScheduleTemplate scheduleTemplate;
 
     @Column(name = "begin_time", nullable = false)
     public OffsetTime beginTime;
