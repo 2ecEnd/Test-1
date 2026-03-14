@@ -33,10 +33,10 @@ public class SchedulePeriod {
     public SlotType slotType = SlotType.UNDEFINED;
 
     @Column(name = "administrator_id", length = 32, nullable = false)
-    public String administratorId;
+    public Employee administratorId;
 
     @Column(name = "executor_id", length = 32, nullable = true)
-    public String executorId;
+    public Employee executorId;
 
     @PrePersist
     protected void onCreate() {

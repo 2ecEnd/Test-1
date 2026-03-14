@@ -7,4 +7,6 @@ public interface ScheduleService {
     String createEntity(ScheduleCreateRequest request);
 
     ScheduleDto getEntityById(String id);
+
+    ScheduleDto getEntityByName(String name);
 }
