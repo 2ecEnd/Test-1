@@ -23,8 +23,11 @@ public class SchedulePeriodController {
     private SchedulePeriodService schedulePeriodService;
 
     @PostMapping
-    public ResponseEntity<CreateResponse> createEntity(@RequestBody SchedulePeriodCreateRequest request) {
-        return ResponseEntity.ok(new CreateResponse(schedulePeriodService.createEntity(request)));
+    public ResponseEntity<CreateResponse> createEntity(
+            @RequestBody SchedulePeriodCreateRequest request,
+            @RequestHeader("x-current-user") String currentUser
+    ) {
+        return ResponseEntity.ok(new CreateResponse(schedulePeriodService.createEntity(request, currentUser)));
     }
 
     @GetMapping

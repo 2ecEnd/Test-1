@@ -9,7 +9,7 @@ import com.example.Test_1.models.dto.SortRequest;
 import java.util.List;
 
 public interface SchedulePeriodService {
-    String createEntity(SchedulePeriodCreateRequest request);
+    String createEntity(SchedulePeriodCreateRequest request, String currentUser);
 
     SchedulePeriodDto getEntityById(String id);
 

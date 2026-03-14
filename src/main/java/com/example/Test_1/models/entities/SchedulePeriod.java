@@ -30,11 +30,13 @@ public class SchedulePeriod {
     @Column(name = "slot_type", length = 20, nullable = false)
     public SlotType slotType = SlotType.UNDEFINED;
 
-    @Column(name = "administrator_id", length = 32, nullable = false)
-    public Employee administratorId;
+    @ManyToOne
+    @JoinColumn(name = "administrator_id", nullable = false)
+    public Employee administrator;
 
-    @Column(name = "executor_id", length = 32, nullable = true)
-    public Employee executorId;
+    @ManyToOne
+    @JoinColumn(name = "executor_id", nullable = true)
+    public Employee executor;
 
     @PrePersist
     protected void onCreate() {

@@ -23,9 +23,7 @@ public class SchedulePeriodCreateRequest {
     @Nullable
     public SlotType slotType;
 
-    @JsonProperty("AdministratorId")
-    public String administratorId;
-
     @JsonProperty("ExecutorId")
+    @Nullable
     public String executorId;
 }
