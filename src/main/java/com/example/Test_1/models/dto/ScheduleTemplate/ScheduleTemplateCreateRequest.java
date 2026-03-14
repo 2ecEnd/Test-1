@@ -11,9 +11,6 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScheduleTemplateCreateRequest {
-    @JsonProperty("CreationDate")
-    public OffsetDateTime creationDate;
-
     @JsonProperty("TemplateType")
     public String templateType;
 }
