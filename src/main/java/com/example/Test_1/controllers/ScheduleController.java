@@ -1,8 +1,8 @@
 package com.example.Test_1.controllers;
 
 import com.example.Test_1.models.dto.etc.CreateResponse;
-import com.example.Test_1.models.dto.Schedule.ScheduleCreateRequest;
-import com.example.Test_1.models.dto.Schedule.ScheduleDto;
+import com.example.Test_1.models.dto.schedule.ScheduleCreateRequest;
+import com.example.Test_1.models.dto.schedule.ScheduleDto;
 import com.example.Test_1.services.interfaces.ScheduleService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

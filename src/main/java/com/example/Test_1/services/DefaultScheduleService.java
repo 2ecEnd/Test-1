@@ -1,7 +1,7 @@
 package com.example.Test_1.services;
 
-import com.example.Test_1.models.dto.Schedule.ScheduleCreateRequest;
-import com.example.Test_1.models.dto.Schedule.ScheduleDto;
+import com.example.Test_1.models.dto.schedule.ScheduleCreateRequest;
+import com.example.Test_1.models.dto.schedule.ScheduleDto;
 import com.example.Test_1.models.entities.Schedule;
 import com.example.Test_1.repositories.ScheduleRepository;
 import com.example.Test_1.services.interfaces.ScheduleService;
@@ -9,8 +9,6 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Transactional

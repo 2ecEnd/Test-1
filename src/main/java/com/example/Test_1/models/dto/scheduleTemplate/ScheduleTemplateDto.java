@@ -1,4 +1,4 @@
-package com.example.Test_1.models.dto.ScheduleTemplate;
+package com.example.Test_1.models.dto.scheduleTemplate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

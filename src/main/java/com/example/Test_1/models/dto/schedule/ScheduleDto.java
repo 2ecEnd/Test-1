@@ -1,4 +1,4 @@
-package com.example.Test_1.models.dto.Schedule;
+package com.example.Test_1.models.dto.schedule;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleCreateRequest {
+public class ScheduleDto {
+    @JsonProperty("Id")
+    public String id;
+
     @JsonProperty("ScheduleName")
     public String scheduleName;
 

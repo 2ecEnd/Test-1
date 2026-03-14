@@ -1,8 +1,8 @@
 package com.example.Test_1.controllers;
 
 import com.example.Test_1.models.dto.etc.CreateResponse;
-import com.example.Test_1.models.dto.ScheduleTemplate.ScheduleTemplateCreateRequest;
-import com.example.Test_1.models.dto.ScheduleTemplate.ScheduleTemplateDto;
+import com.example.Test_1.models.dto.scheduleTemplate.ScheduleTemplateCreateRequest;
+import com.example.Test_1.models.dto.scheduleTemplate.ScheduleTemplateDto;
 import com.example.Test_1.models.dto.etc.GetByIdRequest;
 import com.example.Test_1.services.interfaces.ScheduleTemplateService;
 import lombok.AllArgsConstructor;

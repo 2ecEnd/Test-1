@@ -1,4 +1,4 @@
-package com.example.Test_1.models.dto.Employee;
+package com.example.Test_1.models.dto.employee;
 
 import com.example.Test_1.models.enums.PositionType;
 import com.example.Test_1.models.enums.StatusType;

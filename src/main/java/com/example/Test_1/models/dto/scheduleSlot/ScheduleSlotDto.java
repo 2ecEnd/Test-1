@@ -1,4 +1,4 @@
-package com.example.Test_1.models.dto.ScheduleSlot;
+package com.example.Test_1.models.dto.scheduleSlot;
 
 import com.example.Test_1.models.enums.PriorityType;
 import com.fasterxml.jackson.annotation.JsonProperty;

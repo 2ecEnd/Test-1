@@ -2,8 +2,8 @@ package com.example.Test_1.services;
 
 import com.example.Test_1.models.dto.etc.FilterRequest;
 import com.example.Test_1.models.dto.etc.PaginationRequest;
-import com.example.Test_1.models.dto.SchedulePeriod.SchedulePeriodCreateRequest;
-import com.example.Test_1.models.dto.SchedulePeriod.SchedulePeriodDto;
+import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodCreateRequest;
+import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodDto;
 import com.example.Test_1.models.dto.etc.SortRequest;
 import com.example.Test_1.models.entities.Employee;
 import com.example.Test_1.models.entities.SchedulePeriod;

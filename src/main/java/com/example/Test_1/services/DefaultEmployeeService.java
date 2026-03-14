@@ -1,7 +1,7 @@
 package com.example.Test_1.services;
 
-import com.example.Test_1.models.dto.Employee.EmployeeCreateRequest;
-import com.example.Test_1.models.dto.Employee.EmployeeDto;
+import com.example.Test_1.models.dto.employee.EmployeeCreateRequest;
+import com.example.Test_1.models.dto.employee.EmployeeDto;
 import com.example.Test_1.models.entities.Employee;
 import com.example.Test_1.repositories.EmployeeRepository;
 import com.example.Test_1.services.interfaces.EmployeeService;
@@ -22,8 +22,11 @@ public class DefaultEmployeeService implements EmployeeService {
         var entity = Employee.builder()
                 .employeeName(request.employeeName)
                 .status(request.status)
-                .position(request.position)
                 .build();
+
+        if (request.position != null) {
+            entity.position = request.position;
+        }
 
         employeeRepository.save(entity);
 

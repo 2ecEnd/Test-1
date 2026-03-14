@@ -1,7 +1,7 @@
 package com.example.Test_1.services;
 
-import com.example.Test_1.models.dto.ScheduleSlot.ScheduleSlotCreateRequest;
-import com.example.Test_1.models.dto.ScheduleSlot.ScheduleSlotDto;
+import com.example.Test_1.models.dto.scheduleSlot.ScheduleSlotCreateRequest;
+import com.example.Test_1.models.dto.scheduleSlot.ScheduleSlotDto;
 import com.example.Test_1.models.entities.ScheduleSlot;
 import com.example.Test_1.repositories.ScheduleSlotRepository;
 import com.example.Test_1.repositories.ScheduleTemplateRepository;

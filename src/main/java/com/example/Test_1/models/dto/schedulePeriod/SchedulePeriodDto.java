@@ -1,10 +1,7 @@
-package com.example.Test_1.models.dto.SchedulePeriod;
+package com.example.Test_1.models.dto.schedulePeriod;
 
-import com.example.Test_1.models.entities.Schedule;
-import com.example.Test_1.models.entities.ScheduleSlot;
 import com.example.Test_1.models.enums.SlotType;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SchedulePeriodCreateRequest {
+public class SchedulePeriodDto {
+    @JsonProperty("Id")
+    public String Id;
+
     @JsonProperty("ScheduleSlotId")
     public String scheduleSlotId;
 
@@ -20,10 +20,11 @@ public class SchedulePeriodCreateRequest {
     public String scheduleId;
 
     @JsonProperty("SlotType")
-    @Nullable
     public SlotType slotType;
 
+    @JsonProperty("AdministratorId")
+    public String administratorId;
+
     @JsonProperty("ExecutorId")
-    @Nullable
     public String executorId;
 }
