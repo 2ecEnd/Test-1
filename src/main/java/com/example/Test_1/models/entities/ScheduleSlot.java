@@ -31,6 +31,7 @@ public class ScheduleSlot {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", length = 20, nullable = false)
+    @Builder.Default
     public PriorityType priority = PriorityType.NORMAL;
 
     @PrePersist

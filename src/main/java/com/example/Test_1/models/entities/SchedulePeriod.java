@@ -28,6 +28,7 @@ public class SchedulePeriod {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "slot_type", length = 20, nullable = false)
+    @Builder.Default
     public SlotType slotType = SlotType.UNDEFINED;
 
     @ManyToOne

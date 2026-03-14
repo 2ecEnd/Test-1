@@ -28,6 +28,7 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "position", length = 20, nullable = false)
+    @Builder.Default
     public PositionType position = PositionType.UNDEFINED;
 
     @PrePersist
