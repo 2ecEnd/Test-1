@@ -42,17 +42,22 @@ public class SchedulePeriodController {
 
     @GetMapping
     public ResponseEntity<List<SchedulePeriodDto>> getEntities(
-            @RequestParam FilterRequest filter,
-            @RequestParam SortRequest sort,
-            @RequestParam PaginationRequest pagination
+            @ModelAttribute FilterRequest filter,
+            @ModelAttribute SortRequest sort,
+            @ModelAttribute PaginationRequest pagination
     ) {
         var paging = PageRequest.of(
                 pagination.page,
-                pagination.size,
-                Sort.by(
-                        sort.direction,
-                        sort.field.toString())
+                pagination.size
                 );
+
+        if (sort.field != null) {
+            paging = paging.withSort(
+                    Sort.by(
+                            sort.direction,
+                            sort.field.toString())
+            );
+        }
 
         Specification<SchedulePeriod> specs = (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
@@ -60,19 +65,19 @@ public class SchedulePeriodController {
                 predicates.add(cb.equal(root.get("id"), filter.id));
             }
             if (filter.slotId != null) {
-                predicates.add(cb.equal(root.get("slotId"), filter.slotId));
+                predicates.add(cb.equal(root.get("slot").get("id"), filter.slotId));
             }
             if (filter.scheduleId != null) {
-                predicates.add(cb.equal(root.get("scheduleId"), filter.scheduleId));
+                predicates.add(cb.equal(root.get("schedule").get("id"), filter.scheduleId));
             }
             if (filter.slotType != null) {
                 predicates.add(cb.equal(root.get("slotType"), filter.slotType));
             }
             if (filter.administratorId != null) {
-                predicates.add(cb.equal(root.get("administratorId"), filter.administratorId));
+                predicates.add(cb.equal(root.get("administrator").get("id"), filter.administratorId));
             }
             if (filter.executorId != null) {
-                predicates.add(cb.equal(root.get("executorId"), filter.executorId));
+                predicates.add(cb.equal(root.get("executor").get("id"), filter.executorId));
             }
             return cb.and(predicates.toArray(new Predicate[0]));
         };

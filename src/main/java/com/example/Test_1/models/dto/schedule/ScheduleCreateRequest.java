@@ -17,7 +17,4 @@ public class ScheduleCreateRequest {
 
     @JsonProperty("ScheduleTags")
     public List<String> scheduleTags;
-
-    @JsonProperty("CreationDate")
-    public OffsetDateTime creationDate;
 }
