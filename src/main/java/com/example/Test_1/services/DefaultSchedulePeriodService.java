@@ -15,6 +15,8 @@ import com.example.Test_1.services.interfaces.SchedulePeriodService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -90,10 +92,18 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
 
     @Override
     public List<SchedulePeriodDto> getEntities(
-            FilterRequest filter,
-            SortRequest sort,
-            PaginationRequest pagination
+            Specification<SchedulePeriod> specs,
+            PageRequest paging
     ) {
-        return List.of();
+        var result = schedulePeriodRepository.findAll(specs, paging);
+
+        return result.stream().map(e -> new SchedulePeriodDto(
+                e.id,
+                e.scheduleSlot.id,
+                e.schedule.id,
+                e.slotType,
+                e.administrator.id,
+                e.executor == null ? null : e.executor.id
+        )).toList();
     }
 }

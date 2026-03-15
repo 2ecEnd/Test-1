@@ -3,12 +3,18 @@ package com.example.Test_1.controllers;
 import com.example.Test_1.models.dto.etc.*;
 import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodCreateRequest;
 import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodDto;
+import com.example.Test_1.models.entities.SchedulePeriod;
 import com.example.Test_1.services.interfaces.SchedulePeriodService;
+import jakarta.persistence.criteria.Predicate;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -40,6 +46,37 @@ public class SchedulePeriodController {
             @RequestParam SortRequest sort,
             @RequestParam PaginationRequest pagination
     ) {
-        return ResponseEntity.ok(schedulePeriodService.getEntities(filter, sort, pagination));
+        var paging = PageRequest.of(
+                pagination.page,
+                pagination.size,
+                Sort.by(
+                        sort.direction,
+                        sort.field.toString())
+                );
+
+        Specification<SchedulePeriod> specs = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (filter.id != null) {
+                predicates.add(cb.equal(root.get("id"), filter.id));
+            }
+            if (filter.slotId != null) {
+                predicates.add(cb.equal(root.get("slotId"), filter.slotId));
+            }
+            if (filter.scheduleId != null) {
+                predicates.add(cb.equal(root.get("scheduleId"), filter.scheduleId));
+            }
+            if (filter.slotType != null) {
+                predicates.add(cb.equal(root.get("slotType"), filter.slotType));
+            }
+            if (filter.administratorId != null) {
+                predicates.add(cb.equal(root.get("administratorId"), filter.administratorId));
+            }
+            if (filter.executorId != null) {
+                predicates.add(cb.equal(root.get("executorId"), filter.executorId));
+            }
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+
+        return ResponseEntity.ok(schedulePeriodService.getEntities(specs, paging));
     }
 }
