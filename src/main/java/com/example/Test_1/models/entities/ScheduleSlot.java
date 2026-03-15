@@ -23,10 +23,10 @@ public class ScheduleSlot {
     @JoinColumn(name = "schedule_template_id", nullable = false)
     public ScheduleTemplate scheduleTemplate;
 
-    @Column(name = "begin_time", nullable = false)
+    @Column(name = "begin_time", nullable = false, columnDefinition = "TIMETZ")
     public OffsetTime beginTime;
 
-    @Column(name = "end_time", nullable = false)
+    @Column(name = "end_time", nullable = false, columnDefinition = "TIMETZ")
     public OffsetTime endTime;
 
     @Enumerated(EnumType.STRING)

@@ -2,6 +2,8 @@ package com.example.Test_1.models.dto.scheduleSlot;
 
 import com.example.Test_1.models.enums.PriorityType;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +24,6 @@ public class ScheduleSlotCreateRequest {
     public OffsetTime endTime;
 
     @JsonProperty("Priority")
+    @Nullable
     public PriorityType priority;
 }

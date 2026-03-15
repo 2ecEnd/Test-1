@@ -33,8 +33,11 @@ public class DefaultScheduleSlotService implements ScheduleSlotService {
                 .scheduleTemplate(template.get())
                 .beginTime(request.beginTime)
                 .endTime(request.endTime)
-                .priority(request.priority)
                 .build();
+
+        if (request.priority != null) {
+            entity.priority = request.priority;
+        }
 
         scheduleSlotRepository.save(entity);
 
