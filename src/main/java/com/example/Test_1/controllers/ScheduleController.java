@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -24,7 +26,7 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public ResponseEntity<ScheduleDto> getEntityById(
+    public ResponseEntity<List<ScheduleDto>> getOneEntity(
             @RequestParam(required = false) String id,
             @RequestParam(required = false) String name
     ) {
@@ -32,24 +34,18 @@ public class ScheduleController {
             return ResponseEntity.badRequest().build();
         }
 
-        ScheduleDto entity;
-        if (id != null && name != null) {
-            entity = scheduleService.getEntityById(id);
+        ArrayList<ScheduleDto> response;
+        if (name != null) {
+            response = new ArrayList<ScheduleDto>(scheduleService.getEntityByName(name));
 
-            if (!Objects.equals(entity.scheduleName, name)) {
-                return ResponseEntity.badRequest().build();
+            if (id != null) {
+                response.removeIf(el -> !Objects.equals(el.id, id));
             }
         }
-
-        if (id != null) {
-            entity = scheduleService.getEntityById(id);
-        }
         else {
-            entity = scheduleService.getEntityByName(name);
+            response = new ArrayList<ScheduleDto>(scheduleService.getEntityById(id));
         }
 
-        return entity == null ?
-                ResponseEntity.badRequest().build() :
-                ResponseEntity.ok(entity);
+        return ResponseEntity.ok(response);
     }
 }

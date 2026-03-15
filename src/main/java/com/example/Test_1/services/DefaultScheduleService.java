@@ -10,6 +10,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 @AllArgsConstructor
@@ -30,19 +35,48 @@ public class DefaultScheduleService implements ScheduleService {
     }
 
     @Override
-    public ScheduleDto getEntityById(String id) {
-        var entity = scheduleRepository.findById(id);
+    public List<ScheduleDto> getEntityById(String id) {
+        var entities = new ArrayList<Optional<Schedule>>();
+        entities.add(scheduleRepository.findById(id));
 
-        return entity.map(e -> new ScheduleDto(
+        return entities.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(e -> new ScheduleDto(
                 e.id,
                 e.scheduleName,
                 e.getTagsAsList(),
                 e.creationDate
-        )).orElse(null);
+        )).toList();
     }
 
     @Override
-    public ScheduleDto getEntityByName(String name) {
-        return null;
+    public List<ScheduleDto> getEntityByName(String name) {
+        var entities = new HashSet<Optional<Schedule>>();
+
+        // Получение сущностей
+        // Решение через регулярки явное не лучшее
+        // из-за возможного наличия спецсимволов в имени
+        // но лучше способа я не придумал(
+        for (int i = 0; i < name.length(); i++) {
+            for (int j = 0; j < name.length(); j++) {
+                var sb = new StringBuilder(name);
+
+                sb.setCharAt(i, '.');
+                sb.setCharAt(j, '.');
+
+                entities.addAll(scheduleRepository.findByScheduleNameRegex(sb.toString()));
+            }
+        }
+
+        return entities.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(e -> new ScheduleDto(
+                        e.id,
+                        e.scheduleName,
+                        e.getTagsAsList(),
+                        e.creationDate
+                )).toList();
     }
 }

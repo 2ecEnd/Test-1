@@ -40,6 +40,7 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
 
     @Override
     public String createEntity(SchedulePeriodCreateRequest request, String currentUser) {
+        // Validation
         var slot            = scheduleSlotRepository.findById(request.scheduleSlotId);
         var schedule        = scheduleRepository.findById(request.scheduleId);
         var administrator   = employeeRepository.findById(currentUser);
@@ -57,6 +58,11 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
             }
         }
 
+        // Creating
+        /*var entities = schedulePeriodRepository.findAll();
+        for (var period : entities) {
+            var currBegin = period.beginTime;
+        }*/
 
         var entity = SchedulePeriod.builder()
                 .scheduleSlot(slot.get())
