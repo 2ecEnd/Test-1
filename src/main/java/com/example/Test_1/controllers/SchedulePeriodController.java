@@ -29,7 +29,11 @@ public class SchedulePeriodController {
             @RequestBody SchedulePeriodCreateRequest request,
             @RequestHeader("x-current-user") String currentUser
     ) {
-        return ResponseEntity.ok(new CreateResponse(schedulePeriodService.createEntity(request, currentUser)));
+        var response = schedulePeriodService.createEntity(request, currentUser);
+
+        return response == null ?
+                ResponseEntity.badRequest().build() :
+                ResponseEntity.ok(new CreateResponse(response));
     }
 
     @GetMapping("/id")

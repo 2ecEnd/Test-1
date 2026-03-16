@@ -1,10 +1,7 @@
 package com.example.Test_1.services;
 
-import com.example.Test_1.models.dto.etc.FilterRequest;
-import com.example.Test_1.models.dto.etc.PaginationRequest;
 import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodCreateRequest;
 import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodDto;
-import com.example.Test_1.models.dto.etc.SortRequest;
 import com.example.Test_1.models.entities.Employee;
 import com.example.Test_1.models.entities.SchedulePeriod;
 import com.example.Test_1.repositories.EmployeeRepository;
@@ -20,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -40,40 +38,41 @@ public class DefaultSchedulePeriodService implements SchedulePeriodService {
 
     @Override
     public String createEntity(SchedulePeriodCreateRequest request, String currentUser) {
-        // Validation
-        var slot            = scheduleSlotRepository.findById(request.scheduleSlotId);
-        var schedule        = scheduleRepository.findById(request.scheduleId);
-        var administrator   = employeeRepository.findById(currentUser);
-
-        if (slot.isEmpty() || schedule.isEmpty() || administrator.isEmpty()) {
+        // "Валидация"
+        var slot            = scheduleSlotRepository.findById(request.scheduleSlotId).orElse(null);
+        var schedule        = scheduleRepository.findById(request.scheduleId).orElse(null);
+        var administrator   = employeeRepository.findById(currentUser).orElse(null);
+        if (slot == null || schedule == null || administrator  == null) {
             return null;
         }
 
-        Optional<Employee> executor = Optional.empty();
-        if (request.executorId != null) {
-            executor = employeeRepository.findById(request.executorId);
+        var executor = request.executorId == null ?
+                administrator :
+                employeeRepository.findById(request.executorId).orElse(null);
+        if (executor == null) {
+            return null;
+        }
 
-            if (executor.isEmpty()) {
+        var periods = schedulePeriodRepository.findAllByExecutorId(executor.id);
+        for (var period : periods) {
+            var currSlot = period.scheduleSlot;
+            if (currSlot.beginTime.isBefore(slot.endTime) &&
+                    currSlot.endTime.isAfter(slot.beginTime)) {
                 return null;
             }
         }
 
-        // Creating
-        /*var entities = schedulePeriodRepository.findAll();
-        for (var period : entities) {
-            var currBegin = period.beginTime;
-        }*/
-
+        // Создание
         var entity = SchedulePeriod.builder()
-                .scheduleSlot(slot.get())
-                .schedule(schedule.get())
+                .scheduleSlot(slot)
+                .schedule(schedule)
                 .slotType(request.slotType)
-                .administrator(administrator.get())
+                .administrator(administrator)
                 .build();
 
         if (request.executorId != null) {
-            if (executor.get() != administrator.get()) {
-                entity.executor = executor.get();
+            if (executor != administrator) {
+                entity.executor = executor;
             }
         }
 
