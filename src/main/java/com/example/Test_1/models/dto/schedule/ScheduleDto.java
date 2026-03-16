@@ -1,5 +1,7 @@
 package com.example.Test_1.models.dto.schedule;
 
+import com.example.Test_1.models.dto.schedulePeriod.SchedulePeriodInScheduleDto;
+import com.example.Test_1.models.dto.scheduleSlot.ScheduleSlotDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +25,7 @@ public class ScheduleDto {
 
     @JsonProperty("CreationDate")
     public OffsetDateTime creationDate;
+
+    @JsonProperty("periods")
+    public List<SchedulePeriodInScheduleDto> periods;
 }

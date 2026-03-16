@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface SchedulePeriodRepository
         extends JpaRepository<SchedulePeriod, String>,
         JpaSpecificationExecutor<SchedulePeriod> {
+    public List<SchedulePeriod> findAllByScheduleId(String id);
 }
